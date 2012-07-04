@@ -9,11 +9,14 @@ public class AntMover : MonoBehaviour
 	{
 		position ();
 	}
-	void position (){
+
+	void position ()
+	{
 		pos = new Vector3 (Random.Range (-4.5f, 4.5f), 0, Random.Range (-4.5f, 4.5f));
 		pos = new Vector3 (transform.position.x - pos.x, 0, transform.position.z - pos.z);
 		norm = pos.normalized;
 	}
+
 	void Update ()
 	{
 		Vector3 nextMove = norm * Time.deltaTime;
