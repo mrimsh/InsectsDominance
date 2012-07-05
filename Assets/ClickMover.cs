@@ -3,33 +3,46 @@ using System.Collections;
 
 public class ClickMover : MonoBehaviour
 {
-	Vector3 norm, p, q;
+	Vector3 target, q;
+	float shiftLength = 0f;
+	Vector3 shift;
 
 	void Start ()
 	{
-		func ();
-		
+		shift = new Vector3 (Random.Range (-1f, 1f), 0, Random.Range (-1f, 1f));
 	}
 
-	void func ()
+	void GetNextPath ()
 	{
-		if (Input.GetButtonDown ("Fire1")) { 
-			p = Camera.mainCamera.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 0));
-			p = new Vector3 (p.x, 0, p.z);
-			q = p;
-			p = new Vector3 (transform.position.x - p.x, 0, transform.position.z - p.z);
-			norm = p.normalized;
-		}
+		target = Camera.mainCamera.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 0));
+		target = new Vector3 (target.x, 0, target.z);
 	}
 
 	void Update ()
 	{
-		Vector3 nextMove = norm * Time.deltaTime;
-		func ();
+		if (Input.GetButtonDown ("Fire1")) { 
+			GetNextPath ();
+		}
+		
+		
+		Vector3 direction = transform.position - target;
+		Vector3 nextMove = direction.normalized * Time.deltaTime;
+		
+		if (direction.magnitude >= nextMove.magnitude) {
 			
-		if (Mathf.Abs (transform.position.magnitude - q.magnitude) > nextMove.magnitude) {
-			transform.position -= nextMove;
-							
+			transform.position -= nextMove + (shift * Time.deltaTime);
+			target -= shift * Time.deltaTime;
+			shiftLength += shift.magnitude * Time.deltaTime;
+			if (shiftLength >= 1f) {
+				shift = new Vector3 (Random.Range (-1f, 1f), 0, Random.Range (-1f, 1f));
+				
+				shiftLength = 0;
+			}
+			Debug.Log ("I'm moving! And shift is " + shift);
+		} else {
+			
+			Debug.Log ("I'm stopped!");
+		
 		}
 	}
 }
