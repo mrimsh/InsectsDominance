@@ -35,9 +35,9 @@ public class ClickMover : MonoBehaviour
 				shift = new Vector3 (Random.Range (-1f, 1f), 0, Random.Range (-1f, 1f));
 				shiftLength = 0;
 			}
-			Debug.Log ("I'm moving! And shift is " + shift);
+			
 		} else {
-			Debug.Log ("I'm stopped!");
+			
 		
 		}
 	}

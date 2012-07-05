@@ -3,27 +3,23 @@ using System.Collections;
 
 public class Spawn : MonoBehaviour
 {
-
-	public GameObject prefab;
+	public GameObject[] prefab;
+	public int numRace;
 
 	public void Start ()
 	{	
+		numRace = PlayerPrefs.GetInt ("SelectedRace");
 		spawn ();
 	}
 
 	void spawn ()
 	{
-		float prefabX = prefab.transform.position.x;
-		float prefabZ = prefab.transform.position.z;
-
+		float prefabX = prefab [numRace].transform.position.x;
+		float prefabZ = prefab [numRace].transform.position.z;
 		for (int i=0; i<10; i++) {
 			float cloneX = Random.Range (-4.5f, 4.5f);
 			float cloneZ = Random.Range (-4.5f, 4.5f);
-
-			//Vector3 distance = new Vector3 (cloneX - prefabX, 0, cloneZ - prefabZ);
-
-			
-			Instantiate (prefab, new Vector3 (cloneX, 0, cloneZ), Quaternion.identity);
+			Instantiate (prefab [numRace], new Vector3 (cloneX, 0, cloneZ), Quaternion.identity);
 		}
 	}
 }
