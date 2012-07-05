@@ -6,7 +6,7 @@ public class ClickMover : MonoBehaviour
 	Vector3 target, q;
 	float shiftLength = 0f;
 	Vector3 shift;
-
+	public int speed;
 	void Start ()
 	{
 		shift = new Vector3 (Random.Range (-1f, 1f), 0, Random.Range (-1f, 1f));
@@ -26,21 +26,17 @@ public class ClickMover : MonoBehaviour
 		
 		
 		Vector3 direction = transform.position - target;
-		Vector3 nextMove = direction.normalized * Time.deltaTime;
+		Vector3 nextMove = direction.normalized * Time.deltaTime*speed;
 		
 		if (direction.magnitude >= nextMove.magnitude) {
-			
 			transform.position -= nextMove + (shift * Time.deltaTime);
-			target -= shift * Time.deltaTime;
 			shiftLength += shift.magnitude * Time.deltaTime;
 			if (shiftLength >= 1f) {
 				shift = new Vector3 (Random.Range (-1f, 1f), 0, Random.Range (-1f, 1f));
-				
 				shiftLength = 0;
 			}
 			Debug.Log ("I'm moving! And shift is " + shift);
 		} else {
-			
 			Debug.Log ("I'm stopped!");
 		
 		}
