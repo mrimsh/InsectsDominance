@@ -1,12 +1,14 @@
 using UnityEngine;
 using System.Collections;
 
-public class ClickMover : MonoBehaviour
+public class InsectMover : MonoBehaviour
 {
-	Vector3 target, q;
+	public Building target;
+	Vector3 q;
 	float shiftLength = 0f;
 	Vector3 shift;
 	public int speed;
+
 	void Start ()
 	{
 		shift = new Vector3 (Random.Range (-1f, 1f), 0, Random.Range (-1f, 1f));
@@ -14,8 +16,7 @@ public class ClickMover : MonoBehaviour
 
 	void GetNextPath ()
 	{
-		target = Camera.mainCamera.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 0));
-		target = new Vector3 (target.x, 0, target.z);
+		
 	}
 
 	void Update ()
@@ -25,8 +26,8 @@ public class ClickMover : MonoBehaviour
 		}
 		
 		
-		Vector3 direction = transform.position - target;
-		Vector3 nextMove = direction.normalized * Time.deltaTime*speed;
+		Vector3 direction = transform.position - target.transform.position;
+		Vector3 nextMove = direction.normalized * Time.deltaTime * speed;
 		
 		if (direction.magnitude >= nextMove.magnitude) {
 			transform.position -= nextMove + (shift * Time.deltaTime);
@@ -37,7 +38,8 @@ public class ClickMover : MonoBehaviour
 			}
 			
 		} else {
-			
+			target.insectCount++;
+			Destroy (gameObject);
 		
 		}
 	}
