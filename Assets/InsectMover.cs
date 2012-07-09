@@ -7,11 +7,12 @@ public class InsectMover : MonoBehaviour
 	Vector3 q;
 	float shiftLength = 0f;
 	Vector3 shift;
-	public int speed;
-
+	GameObject race ;
 	void Start ()
 	{
 		shift = new Vector3 (Random.Range (-1f, 1f), 0, Random.Range (-1f, 1f));
+		
+		
 	}
 
 	void GetNextPath ()
@@ -27,7 +28,7 @@ public class InsectMover : MonoBehaviour
 		
 		
 		Vector3 direction = transform.position - target.transform.position;
-		Vector3 nextMove = direction.normalized * Time.deltaTime * speed;
+		Vector3 nextMove = direction.normalized * Time.deltaTime * GameManager.Instance.movementSpeed;
 		
 		if (direction.magnitude >= nextMove.magnitude) {
 			transform.position -= nextMove + (shift * Time.deltaTime);
@@ -38,7 +39,13 @@ public class InsectMover : MonoBehaviour
 			}
 			
 		} else {
-			target.insectCount++;
+			if (true/*race.GetComponent<Building>().race*/) {
+				target.insectCount++;
+				
+			} else {
+				target.insectCount--;
+			}
+			
 			Destroy (gameObject);
 		
 		}
