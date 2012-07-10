@@ -7,7 +7,7 @@ public class Menu : MonoBehaviour
 	bool b_IsMusicOn, b_IsRedAnt, b_IsBlackAnt, b_IsBug, b_IsCockroach;
 	// Use this for initialization
 	public int selGridInt = 0;
-	public string[] selStrings = new string[] {"I will play for Red Ants!", "Black Ants are the Coolest", "Does anyone not like Bugs?", "Only Cockroaches! Only hardcore!"};
+	public string[] selStrings = new string[] {"I will play for Red Ants!", "Black Ants are the coolest", "Does anyone not like Bugs?", "Only Cockroaches! Only hardcore!"};
 
 	void Start ()
 	{
@@ -40,29 +40,6 @@ public class Menu : MonoBehaviour
 			GUILayout.FlexibleSpace ();
 			if (GUILayout.Button ("Exit")) {
 				Application.Quit ();		
-			}
-			GUILayout.EndVertical ();
-			GUILayout.EndArea ();
-		} else if (b_IsShowOptions) {
-			GUILayout.BeginArea (new Rect (10, 10, Screen.width - 20, Screen.height - 20));
-			GUILayout.BeginVertical ();
-			GUILayout.FlexibleSpace ();
-			GUILayout.BeginHorizontal ();
-			GUILayout.FlexibleSpace ();
-			b_IsMusicOn = GUILayout.Toggle (b_IsMusicOn, "Switch on music");
-			if (b_IsMusicOn) {
-				//play music
-			} else {
-				//stop music
-				
-			}
-			GUILayout.FlexibleSpace ();
-			GUILayout.EndHorizontal ();
-			GUILayout.FlexibleSpace ();
-			if (GUILayout.Button ("Cancel", GUILayout.Width (100))) {
-				b_IsShowOptions = false;
-				b_IsShowMenu = true;
-				//play game	
 			}
 			GUILayout.EndVertical ();
 			GUILayout.EndArea ();
