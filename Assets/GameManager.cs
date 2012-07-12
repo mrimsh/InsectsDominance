@@ -15,21 +15,17 @@ public class GameManager : MonoBehaviour
 		}
 	}
 	#endregion
-	public int numRace;
+	public int playerNumRace;
 	//public int computerNumRace;
 	public GameObject[] prefab;
 	public Building targetBuilding;
 	public Building initialBuilding;
-	
+	public Building target;
 	
 	// Use this for initialization
 	void Start ()
 	{
-		numRace = PlayerPrefs.GetInt ("SelectedRace");
-		
-		
-		
-		
+		playerNumRace = PlayerPrefs.GetInt ("SelectedRace");		
 	}
 	
 	// Update is called once per frame
