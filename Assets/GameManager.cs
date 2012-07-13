@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,11 +21,12 @@ public class GameManager : MonoBehaviour
 	public Building targetBuilding;
 	public Building initialBuilding;
 	public Building target;
-	
+	public List<Player> players;
 	// Use this for initialization
 	void Start ()
 	{
-		playerNumRace = PlayerPrefs.GetInt ("SelectedRace");		
+		playerNumRace = PlayerPrefs.GetInt ("SelectedRace");	
+		
 	}
 	
 	// Update is called once per frame
