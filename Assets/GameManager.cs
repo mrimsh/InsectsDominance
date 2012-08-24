@@ -15,16 +15,15 @@ public class GameManager : MonoBehaviour
 		}
 	}
 	#endregion
-	public int playerNumRace;
 	//public int computerNumRace;
-	public GameObject[] prefab;
+	public Race [] races;
 	public Building targetBuilding;
 	public Building initialBuilding;
-	public Building target;
-	public List<Player> players;
+	public List<Buiding> buildingsArray;
 	// Use this for initialization
 	void Start ()
 	{
+		
 		playerNumRace = PlayerPrefs.GetInt ("SelectedRace");	
 		
 	}

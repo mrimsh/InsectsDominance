@@ -11,7 +11,7 @@ public class InsectMover : MonoBehaviour
 	bool player;
 	Vector3 target;
 
-	void Start ()
+/*	void Start ()
 	{
 		if (transform.position.x == GameObject.Find ("Building 1").GetComponent<Transform> ().position.x && 
 			transform.position.z == GameObject.Find ("Building 1").GetComponent<Transform> ().position.z) {
@@ -79,5 +79,5 @@ public class InsectMover : MonoBehaviour
 			
 			Destroy (gameObject);
 		}
-	}
+	}*/
 }

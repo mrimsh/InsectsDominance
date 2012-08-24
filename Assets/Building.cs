@@ -19,31 +19,23 @@ public class Building : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-			
-		if (race) {
-			if (insectCount < maxCapacity) {		
-				insectCount += Time.deltaTime * PPL;
-			}
-		}
-		if (insectCount > maxCapacity) {
-			insectCount = (float)maxCapacity;
-		}
+			//insectCount += (int) Mathf.Ceil(playerOwner.race.ppl*pplBonus*Time.deltaTime);
 			
 	}
 
 	void OnMouseDrag ()
 	{
-		if (this.playerNumRace == PlayerPrefs.GetInt ("SelectedRace")) {
+/*		if (this.playerNumRace == PlayerPrefs.GetInt ("SelectedRace")) {
 			GameManager.Instance.initialBuilding = this;
-		}
+		}*/
 	}
 
 	void OnMouseUp ()
 	{	
-		if (this.playerNumRace == PlayerPrefs.GetInt ("SelectedRace") && GameManager.Instance.targetBuilding != this) {
+/*		if (this.playerNumRace == PlayerPrefs.GetInt ("SelectedRace") && GameManager.Instance.targetBuilding != this) {
 			SendSquad ();
 			
-		}
+		}*/
 	}
 
 	void OnMouseOver ()
@@ -52,7 +44,7 @@ public class Building : MonoBehaviour
 		
 	}
 
-	void SendSquad ()
+/*	void SendSquad ()
 	{
 		GameObject createdInsect;
 		if (race && insectCount > 0) {
@@ -64,7 +56,7 @@ public class Building : MonoBehaviour
 				attackersCount ++;
 			}
 		}
-	}
+	}*/
 
 	
 }

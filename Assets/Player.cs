@@ -4,7 +4,7 @@ using System.Collections;
 [System.Serializable]
 public class Player
 {
-	public int race;
+	public Race race;
 	public Side side;
 	public bool isHuman;
 }
