@@ -5,10 +5,8 @@ public class Insect : MonoBehaviour
 {
 	float shiftLength = 0f;
 	Vector3 shift;
-	bool race ;
 	public Vector3 direction;
 	public Vector3 nextMove;
-	bool player;
 	Vector3 target;
 
 	void Start ()
@@ -19,6 +17,7 @@ public class Insect : MonoBehaviour
 
 	void Update ()
 	{
+		
 		direction = transform.position - target;
 		nextMove = direction.normalized * Time.deltaTime * GameManager.Instance.initialBuilding.playerOwner.race.spd; 
 		

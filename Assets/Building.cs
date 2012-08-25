@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections;
 
 public class Building : MonoBehaviour
-{	
+{
+	public GameObject insectPrefab;
 	float falseInsectCount;
 	public int insectCount;
 	public int maxCapacity;
@@ -26,6 +27,7 @@ public class Building : MonoBehaviour
 			insectCount += 1;
 			falseInsectCount = 0;
 		}
+		
 	}
 
 	void OnMouseDrag ()
@@ -33,6 +35,7 @@ public class Building : MonoBehaviour
 		if (playerOwner.side == Side.Player) {
 			GameManager.Instance.initialBuilding = this;
 		}
+		
 	}
 
 	void OnMouseUp ()
@@ -54,15 +57,15 @@ public class Building : MonoBehaviour
 	{
 		GameObject createdInsect;
 		for (int i = 0; i < insectCount/2; i++) {
-				createdInsect = Instantiate (GameManager.Instance.races[GameManager.Instance.initialBuilding.playerOwner.race.numRace], 
+			createdInsect = Instantiate (insectPrefab, 
 				new Vector3 (transform.position.x, 0, transform.position.z), 
 				Quaternion.identity) as GameObject;
 			insectCount--;
 			attackersCount ++;
 		}
 		
-		GameManager.Instance.targetBuilding = null;
-		GameManager.Instance.initialBuilding = null;
+	//	GameManager.Instance.targetBuilding = null;
+	//	GameManager.Instance.initialBuilding = null;
 	}
 
 	
