@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections;
 
 public class Building : MonoBehaviour
-{
+{	
+	float falseInsectCount;
 	public int insectCount;
 	public int maxCapacity;
 	public Player playerOwner;
@@ -10,6 +11,7 @@ public class Building : MonoBehaviour
 	public float hpBonus;
 	public float pplBonus;
 	public float spdBonus;
+	public int attackersCount;
 	// Use this for initialization
 	void Start ()
 	{
@@ -18,45 +20,50 @@ public class Building : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update ()
-	{
-			//insectCount += (int) Mathf.Ceil(playerOwner.race.ppl*pplBonus*Time.deltaTime);
-			
+	{	
+		falseInsectCount += playerOwner.race.ppl * pplBonus * Time.deltaTime;
+		if (Mathf.Ceil (falseInsectCount) - falseInsectCount <= 0.5 && insectCount < maxCapacity && playerOwner.side != Side.Neutral) {
+			insectCount += 1;
+			falseInsectCount = 0;
+		}
 	}
 
 	void OnMouseDrag ()
 	{
-/*		if (this.playerNumRace == PlayerPrefs.GetInt ("SelectedRace")) {
+		if (playerOwner.side == Side.Player) {
 			GameManager.Instance.initialBuilding = this;
-		}*/
+		}
 	}
 
 	void OnMouseUp ()
 	{	
-/*		if (this.playerNumRace == PlayerPrefs.GetInt ("SelectedRace") && GameManager.Instance.targetBuilding != this) {
+		if (GameManager.Instance.targetBuilding != null && GameManager.Instance.initialBuilding != null) {
 			SendSquad ();
 			
-		}*/
+		}
 	}
 
 	void OnMouseOver ()
 	{
-		GameManager.Instance.targetBuilding = this;
-		
+		if (GameManager.Instance.initialBuilding != this) {
+			GameManager.Instance.targetBuilding = this;
+		}
 	}
 
-/*	void SendSquad ()
+	void SendSquad ()
 	{
 		GameObject createdInsect;
-		if (race && insectCount > 0) {
-			for (int i = 0; i < insectCount/2; i++) {
-				createdInsect = Instantiate (GameManager.Instance.prefab [GameManager.Instance.playerNumRace], 
+		for (int i = 0; i < insectCount/2; i++) {
+				createdInsect = Instantiate (GameManager.Instance.races[GameManager.Instance.initialBuilding.playerOwner.race.numRace], 
 				new Vector3 (transform.position.x, 0, transform.position.z), 
 				Quaternion.identity) as GameObject;
-				insectCount--;
-				attackersCount ++;
-			}
+			insectCount--;
+			attackersCount ++;
 		}
-	}*/
+		
+		GameManager.Instance.targetBuilding = null;
+		GameManager.Instance.initialBuilding = null;
+	}
 
 	
 }
