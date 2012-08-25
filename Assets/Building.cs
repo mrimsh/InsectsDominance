@@ -16,7 +16,11 @@ public class Building : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		
+		if (playerOwner.side == Side.Player) {
+			playerOwner.race = GameManager.Instance.races [PlayerPrefs.GetInt ("SelectedRace")];//GameManager.Instance.selectedRaces [0]];
+		} else {
+			playerOwner.race = GameManager.Instance.races [1];//GameManager.Instance.selectedRaces [1]];
+		}
 	}										
 	
 	// Update is called once per frame
@@ -64,8 +68,8 @@ public class Building : MonoBehaviour
 			attackersCount ++;
 		}
 		
-	//	GameManager.Instance.targetBuilding = null;
-	//	GameManager.Instance.initialBuilding = null;
+		//GameManager.Instance.targetBuilding = null;
+		//GameManager.Instance.initialBuilding = null;
 	}
 
 	

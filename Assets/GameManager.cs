@@ -15,16 +15,21 @@ public class GameManager : MonoBehaviour
 		}
 	}
 	#endregion
-	public int computerNumRace;
-	public Race [] races;
+	public int numRace;
+	public Race[] races;
 	public Building targetBuilding;
 	public Building initialBuilding;
 	public List<Building> buildingsArray;
+	public int[] selectedRaces;
 	// Use this for initialization
 	void Start ()
 	{
-		
-			
+		selectedRaces = new int[4];
+		selectedRaces [0] = PlayerPrefs.GetInt ("SelectedRace");
+		do {
+			selectedRaces [1] = Random.Range (0, 4);
+		} while (selectedRaces[1] == selectedRaces[0]);
+		 
 		
 	}
 	
