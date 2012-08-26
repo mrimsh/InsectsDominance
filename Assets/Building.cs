@@ -8,10 +8,6 @@ public class Building : MonoBehaviour
 	public int insectCount;
 	public int maxCapacity;
 	public Player playerOwner;
-	public float dmgBonus;
-	public float hpBonus;
-	public float pplBonus;
-	public float spdBonus;
 	public int attackersCount;
 	// Use this for initialization
 	void Start ()
@@ -19,19 +15,28 @@ public class Building : MonoBehaviour
 		if (playerOwner.side == Side.Player) {
 			playerOwner.race = GameManager.Instance.races [PlayerPrefs.GetInt ("SelectedRace")];//GameManager.Instance.selectedRaces [0]];
 		} else {
-			playerOwner.race = GameManager.Instance.races [1];//GameManager.Instance.selectedRaces [1]];
+			if (playerOwner.side == Side.AI) {
+				playerOwner.race = GameManager.Instance.races [GameManager.Instance.selectedRaces [1]];
+			} else {
+				playerOwner.race = GameManager.Instance.races [4];
+			}
 		}
 	}										
-	
 	// Update is called once per frame
 	void Update ()
 	{	
-		falseInsectCount += playerOwner.race.ppl * pplBonus * Time.deltaTime;
-		if (Mathf.Ceil (falseInsectCount) - falseInsectCount <= 0.5 && insectCount < maxCapacity && playerOwner.side != Side.Neutral) {
+		falseInsectCount += playerOwner.race.ppl * playerOwner.race.pplBonus * Time.deltaTime;
+		if (1 - falseInsectCount <= 0.5 && insectCount < maxCapacity && playerOwner.side != Side.Neutral) {
 			insectCount += 1;
 			falseInsectCount = 0;
 		}
-		
+		if (insectCount > maxCapacity) {
+			falseInsectCount += (Time.deltaTime * (insectCount - maxCapacity) % maxCapacity) / 20;
+			if (1 - falseInsectCount <= 0.5) {
+				insectCount -= 1;
+				falseInsectCount = 0;
+			}
+		}
 	}
 
 	void OnMouseDrag ()
@@ -60,7 +65,7 @@ public class Building : MonoBehaviour
 	void SendSquad ()
 	{
 		GameObject createdInsect;
-		for (int i = 0; i < insectCount/2; i++) {
+		for (int i = 0; i < insectCount; i++) {
 			createdInsect = Instantiate (insectPrefab, 
 				new Vector3 (transform.position.x, 0, transform.position.z), 
 				Quaternion.identity) as GameObject;

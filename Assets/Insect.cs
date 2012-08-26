@@ -44,8 +44,7 @@ public class Insect : MonoBehaviour
 				} else {
 					//Debug.Log ("The seizure of the building!");	
 					GameManager.Instance.targetBuilding.playerOwner.side = GameManager.Instance.initialBuilding.playerOwner.side;
-					GameManager.Instance.targetBuilding.playerOwner.race.numRace = PlayerPrefs.GetInt ("SelectedRace");
-					GameManager.Instance.targetBuilding.playerOwner.race = GameManager.Instance.races[GameManager.Instance.initialBuilding.playerOwner.race.numRace]; 
+					GameManager.Instance.targetBuilding.playerOwner.race = GameManager.Instance.races [GameManager.Instance.initialBuilding.playerOwner.race.numRace]; 
 					//changes in the building
 				}
 				GameManager.Instance.initialBuilding.attackersCount = 0;

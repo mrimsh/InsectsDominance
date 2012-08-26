@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		selectedRaces = new int[4];
 		selectedRaces [0] = PlayerPrefs.GetInt ("SelectedRace");
 		do {
 			selectedRaces [1] = Random.Range (0, 4);
