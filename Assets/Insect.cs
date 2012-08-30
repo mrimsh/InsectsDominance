@@ -8,51 +8,48 @@ public class Insect : MonoBehaviour
 	public Vector3 direction;
 	public Vector3 nextMove;
 	Vector3 target;
-
+	Building targetBuilding;
+	Building initialBuilding;
+	
 	void Start ()
 	{
 		target = GameManager.Instance.targetBuilding.transform.position;
 		shift = new Vector3 (Random.Range (-1f, 1f), 0, Random.Range (-1f, 1f));	
+		targetBuilding = GameManager.Instance.targetBuilding;
+		initialBuilding = GameManager.Instance.initialBuilding;
+		//Debug.Log(initialBuilding);
+		
 	}
 
 	void Update ()
 	{
-		
 		direction = transform.position - target;
-		nextMove = direction.normalized * Time.deltaTime * GameManager.Instance.initialBuilding.playerOwner.race.spd; 
-		
-		
+		nextMove = direction.normalized * Time.deltaTime * initialBuilding.playerOwner.race.spd; 
 		if (direction.magnitude >= nextMove.magnitude) {
-			
 			transform.position -= nextMove + (shift * Time.deltaTime);
-
 			shiftLength += shift.magnitude * Time.deltaTime;
 			if (shiftLength >= 1f) {
 				shift = new Vector3 (Random.Range (-1f, 1f), 0, Random.Range (-1f, 1f));
 				shiftLength = 0;
 			}
 		} else {
-			
-			if (GameManager.Instance.targetBuilding.playerOwner.race.numRace == 
-					GameManager.Instance.initialBuilding.playerOwner.race.numRace) {
-				GameManager.Instance.targetBuilding.insectCount ++;
+			if (targetBuilding.playerOwner.race.numRace == 
+					initialBuilding.playerOwner.race.numRace) {
+				targetBuilding.insectCount ++;
 				//Debug.Log ("Plus");
 			} else {
 				//Debug.Log ("Minus");
-				if (GameManager.Instance.targetBuilding.insectCount * GameManager.Instance.targetBuilding.playerOwner.race.hp * GameManager.Instance.targetBuilding.playerOwner.race.dmg - GameManager.Instance.initialBuilding.playerOwner.race.dmg * GameManager.Instance.initialBuilding.playerOwner.race.hp >= 0) {
-					GameManager.Instance.targetBuilding.insectCount = (GameManager.Instance.targetBuilding.insectCount * GameManager.Instance.targetBuilding.playerOwner.race.hp * GameManager.Instance.targetBuilding.playerOwner.race.dmg - GameManager.Instance.initialBuilding.playerOwner.race.dmg * GameManager.Instance.initialBuilding.playerOwner.race.hp) / (GameManager.Instance.targetBuilding.playerOwner.race.hp * GameManager.Instance.targetBuilding.playerOwner.race.dmg);
+				if (targetBuilding.insectCount * targetBuilding.playerOwner.race.hp * targetBuilding.playerOwner.race.dmg - initialBuilding.playerOwner.race.dmg * initialBuilding.playerOwner.race.hp >= 0) {
+					targetBuilding.insectCount = (targetBuilding.insectCount * targetBuilding.playerOwner.race.hp * targetBuilding.playerOwner.race.dmg - initialBuilding.playerOwner.race.dmg * initialBuilding.playerOwner.race.hp) / (targetBuilding.playerOwner.race.hp * targetBuilding.playerOwner.race.dmg);
 				} else {
 					//Debug.Log ("The seizure of the building!");	
-					GameManager.Instance.targetBuilding.playerOwner.side = GameManager.Instance.initialBuilding.playerOwner.side;
-					GameManager.Instance.targetBuilding.playerOwner.race = GameManager.Instance.races [GameManager.Instance.initialBuilding.playerOwner.race.numRace]; 
+					targetBuilding.playerOwner.side = initialBuilding.playerOwner.side;
+					targetBuilding.playerOwner.race = GameManager.Instance.races [initialBuilding.playerOwner.race.numRace]; 
 					//changes in the building
 				}
-				GameManager.Instance.initialBuilding.attackersCount = 0;
-
 			}
-			
-			
 			Destroy (gameObject);
 		}
+		
 	}
 }

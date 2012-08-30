@@ -18,10 +18,17 @@ public class GameManager : MonoBehaviour
 	public int numRace;
 	public Race[] races;
 	public Building targetBuilding;
+	public Stack <Building> initialBuildings;
 	public Building initialBuilding;
 	public List<Building> buildingsArray;
 	public int[] selectedRaces;
+	public bool drag;
 	// Use this for initialization
+	void Awake ()
+	{
+		initialBuildings = new Stack<Building> ();
+	}
+
 	void Start ()
 	{
 		selectedRaces [0] = PlayerPrefs.GetInt ("SelectedRace");
