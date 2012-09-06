@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<RacesCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Races>
+		<RaceData name="Red Ants">
+			<dmg>3</dmg>
+			<hp>2</hp>
+			<ppl>1</ppl>
+			<spd>2</spd>
+		</RaceData>
+		<RaceData name="Black Ants">
+			<dmg>2</dmg>
+			<hp>2</hp>
+			<ppl>0.5</ppl>
+			<spd>4</spd>
+		</RaceData>
+		<RaceData name="Bugs">
+			<dmg>4</dmg>
+			<hp>3</hp>
+			<ppl>2</ppl>
+			<spd>2</spd>
+		</RaceData>
+		<RaceData name="Cockraches">
+			<dmg>2</dmg>
+			<hp>4</hp>
+			<ppl>0.75</ppl>
+			<spd>3</spd>
+		</RaceData>
+	</Races>
+</RacesCollection>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<MapsCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Maps>
+		<MapSaveData name="TestMap">
+			<Buildings>
+				<BuildingInfo>
+					<position>
+						<x>15.53415</x>
+						<y>-13.38595</y>
+					</position>
+					<playerID>0</playerID>
+					<maxCapacity>100</maxCapacity>
+				</BuildingInfo>
+				<BuildingInfo>
+					<position>
+						<x>11.57054</x>
+						<y>13.23521</y>
+					</position>
+					<playerID>0</playerID>
+					<maxCapacity>50</maxCapacity>
+				</BuildingInfo>
+				<BuildingInfo>
+					<position>
+						<x>-14.81795</x>
+						<y>14.24544</y>
+					</position>
+					<playerID>1</playerID>
+					<maxCapacity>50</maxCapacity>
+				</BuildingInfo>
+				<BuildingInfo>
+					<position>
+						<x>-14.81795</x>
+						<y>-12.2939</y>
+					</position>
+					<playerID>1</playerID>
+					<maxCapacity>60</maxCapacity>
+				</BuildingInfo>
+			</Buildings>
+		</MapSaveData>
+	</Maps>
+</MapsCollection>

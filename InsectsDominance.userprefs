@@ -1,19 +1,22 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Building.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../SpaceTrial/Assets/Scripts/GameEditor/ResourceManager.cs">
     <Files>
-      <File FileName="Assets\Building.cs" Line="63" Column="7" />
-      <File FileName="Assets\GameManager.cs" Line="21" Column="14" />
-      <File FileName="Assets\Insect.cs" Line="21" Column="3" />
-      <File FileName="Assets\Player.cs" Line="1" Column="1" />
-      <File FileName="Assets\Race.cs" Line="1" Column="1" />
+      <File FileName="../SpaceTrial/Assets/Scripts/GameEditor/ResourceManager.cs" Line="59" Column="2" />
+      <File FileName="Assets/Scripts/Loader.cs" Line="57" Column="4" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Assets" expanded="True">
-              <Node name="Building.cs" selected="True" />
+              <Node name="Resources" expanded="True">
+                <Node name="GameValues" expanded="True" />
+              </Node>
+              <Node name="Scripts" expanded="True">
+                <Node name="DataClasses" expanded="True" />
+                <Node name="Loader.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>
