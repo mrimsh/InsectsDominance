@@ -8,15 +8,17 @@ public class Insect : MonoBehaviour
 	public Vector3 direction;
 	public Vector3 nextMove;
 	Vector3 target;
-	Building targetBuilding;
-	Building initialBuilding;
+	[HideInInspector]
+	public Building targetBuilding;
+	[HideInInspector]
+	public Building initialBuilding;
 	
 	void Start ()
 	{
-		target = GameManager.Instance.targetBuilding.transform.position;
+		target = targetBuilding.transform.position;
 		shift = new Vector3 (Random.Range (-1f, 1f), 0, Random.Range (-1f, 1f));	
-		targetBuilding = GameManager.Instance.targetBuilding;
-		initialBuilding = GameManager.Instance.initialBuilding;
+		//targetBuilding = GameManager.Instance.targetBuilding;
+		//initialBuilding = GameManager.Instance.initialBuilding;
 		//Debug.Log(initialBuilding);
 		
 	}
