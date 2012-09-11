@@ -4,7 +4,6 @@ using System.Collections;
 public class Building : MonoBehaviour
 {
 	public GameObject insectPrefab;
-	float falseInsectCount;
 	public int insectCount;
 	public int maxCapacity;
 	public Player playerOwner;
@@ -22,33 +21,23 @@ public class Building : MonoBehaviour
 				playerOwner.race = GameManager.Instance.races [4];
 			}
 		}
+		
 	}		
-	
 	// Update is called once per frame
 	void Update ()
 	{
-		if (insectCount <= maxCapacity) {
+		if (insectCount < maxCapacity) {
 			if (Time.time > lastPplIncreasedTime + playerOwner.race.ppl) {
 				insectCount += 1;
 				lastPplIncreasedTime = Time.time;
 			}
 		}
-		
-		
-		/*
-		falseInsectCount += playerOwner.race.ppl * playerOwner.race.pplBonus * Time.deltaTime;
-		if (1 - falseInsectCount <= 0.5 && insectCount < maxCapacity && playerOwner.side != Side.Neutral) {
-			insectCount += 1;
-			falseInsectCount = 0;
-		}
 		if (insectCount > maxCapacity) {
-			falseInsectCount += (Time.deltaTime * (insectCount - maxCapacity) % maxCapacity) / 20;
-			if (1 - falseInsectCount <= 0.5) {
+			if (Time.time * (1 + (insectCount - maxCapacity) * 0.0001) > lastPplIncreasedTime + playerOwner.race.ppl) {
 				insectCount -= 1;
-				falseInsectCount = 0;
+				lastPplIncreasedTime = Time.time;
 			}
-		}*/
-
+		}
 	}
 	
 	void OnGUI ()
@@ -65,12 +54,19 @@ public class Building : MonoBehaviour
 	{
 		if (playerOwner.side == Side.Player) {
 			// Drag started. Clearing list of buildings that sends squads and save first(this) building.
-			GameManager.Instance.buildingsSendingSquad.Clear ();
 			GameManager.Instance.buildingsSendingSquad.Add (this);
 			renderer.material.color = Color.green;
 		}
 	}
-	
+
+	void OnMouseExit ()
+	{
+		if (GameManager.Instance.targetBuilding != null && GameManager.Instance.targetBuilding.playerOwner.side == Side.AI) {
+			GameManager.Instance.targetBuilding.renderer.material.color = Color.white;
+		}	
+		GameManager.Instance.targetBuilding = null;
+	}
+
 	void OnMouseOver ()
 	{
 		// Do nothing, if there is no buildongs in list(if there is no first building - means that it was not dragged)
@@ -90,6 +86,7 @@ public class Building : MonoBehaviour
 				renderer.material.color = Color.red;
 			}
 		}
+		GameManager.Instance.targetBuilding = this;	
 	}
 	
 	void OnMouseUp ()
@@ -103,50 +100,14 @@ public class Building : MonoBehaviour
 			
 			GameManager.Instance.buildingsSendingSquad.Clear ();
 			GameManager.Instance.targetBuilding = null;
-		}
-	}
-	
-	/*
-	void OnMouseDrag ()
-	{
-		if (playerOwner.side == Side.Player) {
-			GameManager.Instance.drag = true;
-		}
-	}
-
-	void OnMouseExit ()
-	{
-		GameManager.Instance.targetBuilding = null;
-	}
-
-	void OnMouseUp ()
-	{	
-		if (GameManager.Instance.targetBuilding != null && GameManager.Instance.initialBuildings.Count > 0
-			&& playerOwner.side == Side.Player) {
-			int count = GameManager.Instance.initialBuildings.Count;
-			for (int i = 0; i < count; i++) {
-				GameManager.Instance.initialBuilding = GameManager.Instance.initialBuildings.Pop ();
-				//Debug.Log (GameManager.Instance.initialBuilding);
-				SendSquad ();
-				
-			}
-		}
-		GameManager.Instance.drag = false;
-	}
-
-	void OnMouseOver ()
-	{			
-		if (playerOwner.side == Side.Player && GameManager.Instance.drag) {
-			if (!GameManager.Instance.initialBuildings.Contains (this)) {
-				GameManager.Instance.initialBuildings.Push (this);
-			}
 		} else {
-			GameManager.Instance.targetBuilding = this;
+			for (int i = 0; i < GameManager.Instance.buildingsSendingSquad.Count; i++) {
+				GameManager.Instance.buildingsSendingSquad [i].renderer.material.color = Color.white;
+			}
 		}
+		GameManager.Instance.buildingsSendingSquad.Clear ();
 	}
-	*/
 	
-
 	void SendSquad ()
 	{
 		Insect createdInsect;

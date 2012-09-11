@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
 	public int numRace;
 	public Race[] races;
 	public Building targetBuilding;
-	public Building initialBuilding;
 	public List<Building> buildingsArray;
 	public int[] selectedRaces;
 	public bool drag;
@@ -28,7 +27,7 @@ public class GameManager : MonoBehaviour
 	// Use this for initialization
 	void Awake ()
 	{
-		//initialBuildings = new Stack<Building> ();
+
 	}
 
 	void Start ()
@@ -46,6 +45,4 @@ public class GameManager : MonoBehaviour
 	{
 	
 	}
-	
-	
 }

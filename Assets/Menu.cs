@@ -11,6 +11,8 @@ public class Menu : MonoBehaviour
 
 	void Start ()
 	{
+		MapsDataCollection mapSaveCollection = Loader.Instance.Load ("maps.xml", typeof(MapsDataCollection)) as MapsDataCollection;
+		RacesDataCollection raceSaveCollection = Loader.Instance.Load ("races.xml", typeof(RacesDataCollection)) as RacesDataCollection;
 		b_IsShowMenu = true;
 		b_IsShowGamePlay = b_IsShowOptions = b_IsShowRace = false;
 		b_IsMusicOn = b_IsRedAnt = true;

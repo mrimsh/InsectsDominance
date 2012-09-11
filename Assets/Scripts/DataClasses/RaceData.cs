@@ -29,4 +29,6 @@ public class RaceData
 	public float hp;
 	public float ppl;
 	public float spd;
+	
+
 }

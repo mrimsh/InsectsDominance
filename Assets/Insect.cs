@@ -17,10 +17,6 @@ public class Insect : MonoBehaviour
 	{
 		target = targetBuilding.transform.position;
 		shift = new Vector3 (Random.Range (-1f, 1f), 0, Random.Range (-1f, 1f));	
-		//targetBuilding = GameManager.Instance.targetBuilding;
-		//initialBuilding = GameManager.Instance.initialBuilding;
-		//Debug.Log(initialBuilding);
-		
 	}
 
 	void Update ()

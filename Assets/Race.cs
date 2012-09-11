@@ -7,7 +7,7 @@ public class Race
 	public string name;
 	public int dmg, hp, spd;
 	public float ppl;
-	public	int numRace;
+	public int numRace;
 	public float dmgBonus;
 	public float hpBonus;
 	public float pplBonus;
