@@ -5,8 +5,16 @@ public class Menu : MonoBehaviour
 {
 	public UIPanel MainMenu;
 	public UIPanel ChoiseMenu;
+	public UIPanel OptionsMenu;
+	public UIPanel thisPanel;
 	
-	void Stert ()
+	void Awake ()
+	{
+		thisPanel = MainMenu;
+		moveForw(thisPanel);
+	}
+	
+	void Start ()
 	{
 		MapsDataCollection mapSaveCollection = Loader.Instance.Load ("maps.xml", typeof(MapsDataCollection)) as MapsDataCollection;
 		RacesDataCollection raceSaveCollection = Loader.Instance.Load ("races.xml", typeof(RacesDataCollection)) as RacesDataCollection;
@@ -15,11 +23,12 @@ public class Menu : MonoBehaviour
 	void moveForw (UIPanel panel)
 	{
 		panel.transform.position = new Vector3 (0.0f, 0.0f, 0.0f);
+		thisPanel = panel;
 	}
 
-	void moveBack (UIPanel panel)
+	void moveBack ()
 	{
-		panel.transform.position = new Vector3 (5.0f, 0.0f, 0.0f);
+		thisPanel.transform.position = new Vector3 (5.0f, 0.0f, 0.0f);
 	}
 
 	void setRace (string raceName, int index)
@@ -45,14 +54,20 @@ public class Menu : MonoBehaviour
 
 	void OnStartButton ()
 	{
-		moveBack (MainMenu);
+		moveBack ();
 		moveForw (ChoiseMenu);
 	}
 
 	void OnBackButton ()
 	{
-		moveBack (ChoiseMenu);
+		moveBack ();
 		moveForw (MainMenu);
+	}
+	
+	void OnOptionsButton ()
+	{
+		moveBack ();
+		moveForw (OptionsMenu);
 	}
 
 	void OnLetsGoButton ()
