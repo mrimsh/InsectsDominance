@@ -1,23 +1,29 @@
 using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class MidSceneObject : MonoBehaviour
 {
+#region Singletone tricks
+	private static MidSceneObject midSceneObject;
 
-	// Use this for initialization
-	void Start ()
-	{
-	
+	public static MidSceneObject Instance {
+		get {
+			if (midSceneObject == null) {
+				midSceneObject = GameObject.Find ("MidSceneObject").GetComponent<MidSceneObject> ();
+			}
+			return midSceneObject;
+		}
 	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	
-	}
+#endregion
 
-	void Awake ()
+	public int[] selectedRaces;
+
+	void OnLevelWasLoaded (int level)
 	{
-		DontDestroyOnLoad(gameObject);
+
+		if (level == 1) {
+			// а тут пишем код, который нужно выполнять, когда загрузилась сцена под индексом 1 в Build Setting (ctrl+shift+B)
+		}
 	}
 }
+	
