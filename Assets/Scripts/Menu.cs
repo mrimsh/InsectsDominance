@@ -11,15 +11,14 @@ public class Menu : MonoBehaviour
 	void Awake ()
 	{
 		thisPanel = MainMenu;
-		moveForw(thisPanel);
+		moveForw (thisPanel);
 	}
 	
 	void Start ()
 	{
-		MapsDataCollection mapSaveCollection = Loader.Instance.Load ("maps.xml", typeof(MapsDataCollection)) as MapsDataCollection;
-		RacesDataCollection raceSaveCollection = Loader.Instance.Load ("races.xml", typeof(RacesDataCollection)) as RacesDataCollection;
+		
 	}
-
+	
 	void moveForw (UIPanel panel)
 	{
 		panel.transform.position = new Vector3 (0.0f, 0.0f, 0.0f);
@@ -72,8 +71,24 @@ public class Menu : MonoBehaviour
 
 	void OnLetsGoButton ()
 	{
+		/* TEMPORARY PLAYERS INSTANTIATING */
+		Player newPlayer = new Player();
+		newPlayer.race = MidSceneObject.Instance.raceSaveCollection.races[1];
+		newPlayer.side = Side.Player;
+		MidSceneObject.Instance.playersInGame.Add (newPlayer);
+		newPlayer = new Player();
+		newPlayer.race = MidSceneObject.Instance.raceSaveCollection.races[0];
+		newPlayer.side = Side.Neutral;
+		MidSceneObject.Instance.playersInGame.Add (newPlayer);
+		newPlayer = new Player();
+		newPlayer.race = MidSceneObject.Instance.raceSaveCollection.races[2];
+		newPlayer.side = Side.AI;
+		MidSceneObject.Instance.playersInGame.Add (newPlayer);
+		/* players */
+		
 		DontDestroyOnLoad (GameObject.Find ("MidSceneObject"));
 		Application.LoadLevel (1);
+		
 	}
 
 	void OnPlayerSelectionChange ()

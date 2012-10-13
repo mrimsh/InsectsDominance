@@ -5,13 +5,14 @@ public class Building : MonoBehaviour
 {
 	public GameObject insectPrefab;
 	public int insectCount;
-	public int maxCapacity;
+	public float maxCapacity;
 	public Player playerOwner;
 	private float lastPplIncreasedTime;
 
-// Use this for initialization
+	// Use this for initialization
 	void Start ()
 	{
+		/*
 		if (playerOwner.side == Side.Player) {
 			playerOwner.race = GameManager.Instance.races [MidSceneObject.Instance.selectedRaces [0]];
 		} else {
@@ -21,9 +22,10 @@ public class Building : MonoBehaviour
 				playerOwner.race = GameManager.Instance.races [4];
 			}
 		}
-
+		 */
 	} 
-// Update is called once per frame
+	
+	// Update is called once per frame
 	void Update ()
 	{
 		if (insectCount < maxCapacity) {

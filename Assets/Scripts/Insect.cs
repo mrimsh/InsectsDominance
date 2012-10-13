@@ -31,18 +31,14 @@ public class Insect : MonoBehaviour
 				shiftLength = 0;
 			}
 		} else {
-			if (targetBuilding.playerOwner.race.numRace == 
-					initialBuilding.playerOwner.race.numRace) {
+			if (targetBuilding.playerOwner.race == 
+					initialBuilding.playerOwner.race) {
 				targetBuilding.insectCount ++;
-				//Debug.Log ("Plus");
 			} else {
-				//Debug.Log ("Minus");
 				if (targetBuilding.insectCount * targetBuilding.playerOwner.race.hp * targetBuilding.playerOwner.race.dmg - initialBuilding.playerOwner.race.dmg * initialBuilding.playerOwner.race.hp >= 0) {
-					targetBuilding.insectCount = (targetBuilding.insectCount * targetBuilding.playerOwner.race.hp * targetBuilding.playerOwner.race.dmg - initialBuilding.playerOwner.race.dmg * initialBuilding.playerOwner.race.hp) / (targetBuilding.playerOwner.race.hp * targetBuilding.playerOwner.race.dmg);
+					targetBuilding.insectCount = (int)((targetBuilding.insectCount * targetBuilding.playerOwner.race.hp * targetBuilding.playerOwner.race.dmg - initialBuilding.playerOwner.race.dmg * initialBuilding.playerOwner.race.hp) / (targetBuilding.playerOwner.race.hp * targetBuilding.playerOwner.race.dmg))/1;
 				} else {
-					//Debug.Log ("The seizure of the building!");	
-					targetBuilding.playerOwner.side = initialBuilding.playerOwner.side;
-					targetBuilding.playerOwner.race = GameManager.Instance.races [initialBuilding.playerOwner.race.numRace]; 
+					targetBuilding.playerOwner =  initialBuilding.playerOwner; 
 					//changes in the building
 				}
 			}

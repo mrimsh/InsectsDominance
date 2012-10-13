@@ -52,6 +52,8 @@ public class Loader
 		var serializer = new XmlSerializer (type);
 		FileStream stream;
 		
+		bool bdf = File.Exists (storagePath + fileName);
+		
 		if (!File.Exists (storagePath + fileName)) {
 			Save (fileName, Activator.CreateInstance (type), type);
 		}
