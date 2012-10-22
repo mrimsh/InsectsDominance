@@ -3,9 +3,11 @@ using System.Collections.Generic;
 
 public class MidSceneObject : MonoBehaviour
 {
+	MapsDataCollection mapSaveCollection;
+	RacesDataCollection raceSaveCollection;
 #region Singletone tricks
 	private static MidSceneObject midSceneObject;
-
+	
 	public static MidSceneObject Instance {
 		get {
 			if (midSceneObject == null) {
@@ -20,7 +22,6 @@ public class MidSceneObject : MonoBehaviour
 
 	void OnLevelWasLoaded (int level)
 	{
-
 		if (level == 1) {
 			// а тут пишем код, который нужно выполнять, когда загрузилась сцена под индексом 1 в Build Setting (ctrl+shift+B)
 		}

@@ -4,20 +4,23 @@ using System.Collections;
 public class Menu : MonoBehaviour
 {
 	public UIPanel MainMenu;
-	public UIPanel ChoiseMenu;
+	public UIPanel MapChoise;
+	public UIPanel TestRaceChoise;
 	public UIPanel OptionsMenu;
 	public UIPanel thisPanel;
-	
+	bool isMapChoosen;
+
 	void Awake ()
 	{
 		thisPanel = MainMenu;
-		moveForw(thisPanel);
+		moveForw (thisPanel);
+		isMapChoosen = false;
 	}
 	
 	void Start ()
 	{
-		MapsDataCollection mapSaveCollection = Loader.Instance.Load ("maps.xml", typeof(MapsDataCollection)) as MapsDataCollection;
-		RacesDataCollection raceSaveCollection = Loader.Instance.Load ("races.xml", typeof(RacesDataCollection)) as RacesDataCollection;
+		//MidSceneObject.Instance.mapSaveCollection = Loader.Instance.Load ("maps.xml", typeof(MapsDataCollection)) as MapsDataCollection;
+		//MidSceneObject.Instance.raceSaveCollection = Loader.Instance.Load ("races.xml", typeof(RacesDataCollection)) as RacesDataCollection;
 	}
 
 	void moveForw (UIPanel panel)
@@ -30,7 +33,17 @@ public class Menu : MonoBehaviour
 	{
 		thisPanel.transform.position = new Vector3 (5.0f, 0.0f, 0.0f);
 	}
-
+	
+	/*void moveSecretButton ()
+	{
+		if (isMapChoosen) {
+			GameObject.Find("ChooseRaceButton").transform.position = new Vector3 (0.0f, 0.0f, 0.0f);			
+		}
+		else{
+			GameObject.Find("ChooseRaceButton").transform.position = new Vector3 (5.0f, 0.0f, 0.0f);
+		}
+	}*/
+	
 	void setRace (string raceName, int index)
 	{
 		switch (raceName) {
@@ -51,11 +64,23 @@ public class Menu : MonoBehaviour
 			break;
 		} 
 	}
+	
+	void setMap (string mapName)
+	{
+		switch (mapName) {
+		case "Test Map":
+			GameObject.Find("ChooseRaceButton").transform.position = new Vector3 (0.0f, -0.6483790523690773f, 0.0f);
+			break;
+		default:
+			GameObject.Find("ChooseRaceButton").transform.position = new Vector3 (10.0f, -0.6483790523690773f, 0.0f);
+			break;
+		}
+	}
 
 	void OnStartButton ()
 	{
 		moveBack ();
-		moveForw (ChoiseMenu);
+		moveForw (MapChoise);
 	}
 
 	void OnBackButton ()
@@ -64,6 +89,12 @@ public class Menu : MonoBehaviour
 		moveForw (MainMenu);
 	}
 	
+	void OnChooseRaceButton ()
+	{
+		moveBack ();
+		moveForw (TestRaceChoise);
+	}
+
 	void OnOptionsButton ()
 	{
 		moveBack ();
@@ -84,5 +115,15 @@ public class Menu : MonoBehaviour
 	void OnEnemySelectionChange ()
 	{
 		setRace (GameObject.Find ("EnemyRace").GetComponent<UIPopupList> ().selection, 1);
+	}
+	
+	void OnMapSelectionChange ()
+	{
+		setMap (GameObject.Find ("MapList").GetComponent<UIPopupList> ().selection);
+	}
+
+	void Update ()
+	{
+		Debug.Log (isMapChoosen);
 	}
 }
