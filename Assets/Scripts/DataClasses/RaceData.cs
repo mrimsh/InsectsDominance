@@ -9,6 +9,18 @@ public class RacesDataCollection
 	[XmlArray("Races")]
 	[XmlArrayItem("RaceData")]
 	public List<RaceData> races = new List<RaceData> ();
+	
+	public List<string> GetRacesNames()
+	{
+		List<string> ret = new List<string>();
+		
+		for (int i = 0; i < races.Count; i++)
+		{
+			ret.Add(races[i].name);
+		}
+		
+		return ret;
+	}
 }
 
 [Serializable]
@@ -29,6 +41,4 @@ public class RaceData
 	public float hp;
 	public float ppl;
 	public float spd;
-	
-
 }

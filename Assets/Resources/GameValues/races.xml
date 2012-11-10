@@ -19,7 +19,7 @@
 			<ppl>2</ppl>
 			<spd>2</spd>
 		</RaceData>
-		<RaceData name="Cockraches">
+		<RaceData name="Cockroaches">
 			<dmg>2</dmg>
 			<hp>4</hp>
 			<ppl>0.75</ppl>

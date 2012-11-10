@@ -2,6 +2,52 @@
 <MapsCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<Maps>
 		<MapData name="TestMap">
+			<players>3</players>
+			<Buildings>
+				<BuildingInfo>
+					<position>
+						<x>16</x>
+						<y>-13.38595</y>
+					</position>
+					<playerID>0</playerID>
+					<maxCapacity>100</maxCapacity>
+				</BuildingInfo>
+				<BuildingInfo>
+					<position>
+						<x>11.57054</x>
+						<y>13.23521</y>
+					</position>
+					<playerID>2</playerID>
+					<maxCapacity>50</maxCapacity>
+				</BuildingInfo>
+				<BuildingInfo>
+					<position>
+						<x>-14.81795</x>
+						<y>14.24544</y>
+					</position>
+					<playerID>1</playerID>
+					<maxCapacity>50</maxCapacity>
+				</BuildingInfo>
+				<BuildingInfo>
+					<position>
+						<x>-14.81795</x>
+						<y>-12.2939</y>
+					</position>
+					<playerID>2</playerID>
+					<maxCapacity>60</maxCapacity>
+				</BuildingInfo>
+				<BuildingInfo>
+					<position>
+						<x>-0.81795</x>
+						<y>-0.2939</y>
+					</position>
+					<playerID>2</playerID>
+					<maxCapacity>150</maxCapacity>
+				</BuildingInfo>
+			</Buildings>
+		</MapData>
+		<MapData name="Another Map">
+			<players>5</players>
 			<Buildings>
 				<BuildingInfo>
 					<position>

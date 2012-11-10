@@ -160,7 +160,7 @@ public class UIPopupList : MonoBehaviour
 
 				if (eventReceiver != null && !string.IsNullOrEmpty(functionName) && Application.isPlaying)
 				{
-					eventReceiver.SendMessage(functionName, mSelectedItem, SendMessageOptions.DontRequireReceiver);
+					eventReceiver.SendMessage(functionName, this, SendMessageOptions.DontRequireReceiver);
 				}
 			}
 		}

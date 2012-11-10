@@ -15,15 +15,12 @@ public class GameManager : MonoBehaviour
 		}
 	}
 #endregion
-	public int numRace;
-	public Race[] races;
 	public Building targetBuilding;
 	public List<Building> buildingsArray;
 	public bool drag;
 	[HideInInspector]
 	public List<Building> buildingsSendingSquad = new List<Building> ();
 	public GameObject buildingPrefab;
-	public Player[] playersInGame;
 
 	void Start ()
 	{

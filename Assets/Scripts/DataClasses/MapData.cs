@@ -26,6 +26,9 @@ public class MapData
 	
 	[XmlAttribute("name")]
 	public string name = "New Map";
+	
+	public int players = 2;
+	
 	[XmlArray("Buildings")]
 	[XmlArrayItem("BuildingInfo")]
 	public List<BuildingInfo> buildings = new List<BuildingInfo> ();

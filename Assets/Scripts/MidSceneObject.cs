@@ -17,7 +17,6 @@ public class MidSceneObject : MonoBehaviour
 #endregion
 
 	public int[] selectedRaces;
-	public Race[] races;
 	public MapsDataCollection mapSaveCollection;
 	public RacesDataCollection raceSaveCollection;
 	public MapData selectedMap;
